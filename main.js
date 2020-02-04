@@ -41,6 +41,9 @@ $(document).ready(function() {
           "<button class='remove-btn'>Ta bort</button>" +
           "</li>"
       );
+
+      $(".remove-btn").click(removeCartItem);
+
       getTotalCost();
     }
 
@@ -61,16 +64,10 @@ $(document).ready(function() {
       alert("Tack för din beställning!");
     });
 
-    $("button").click(function(event) {
-      let button = event.target;
-      console.log(button);
-    });
-
-    // function removeCartItem(event) {
-    //   var buttonClicked = event.target;
-    //   console.log(buttonClicked);
-    //   buttonClicked.parentElement.parentElement.remove();
-    //   getTotalCost();
-    // }
+    function removeCartItem(event) {
+      let buttonClicked = event.target;
+      buttonClicked.parentElement.remove();
+      getTotalCost();
+    }
   });
 });

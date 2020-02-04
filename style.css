@@ -61,3 +61,9 @@ header {
   align-self: flex-start;
   box-shadow: 3px 5px 10px -4px rgba(92, 92, 92, 1);
 }
+
+li {
+  border: 1px solid orange;
+  list-style: none;
+  padding: 5%;
+}
