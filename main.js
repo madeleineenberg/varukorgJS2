@@ -34,10 +34,16 @@ $(document).ready(function() {
       let litext = prod.find(".product");
       let listPrice = prod.find(".price");
       let productQty = prod.find("input").val();
+      let $img = prod.find(".card-img-top").attr("src");
 
       $("#cart-list").append(
         "<li class='cart-row'>" +
+          "<div class='img-container' style='display: none;'>" +
+          $img +
+          "</div>" +
+          "<span class='product-name'>" +
           litext.text() +
+          "</span>" +
           " " +
           "<span class='product-price'>" +
           listPrice.text() +
@@ -68,20 +74,62 @@ $(document).ready(function() {
           .find("input")
           .val();
         // gör om från strängar till floats med parseFloat
-        let $pPrice = parseFloat($prodprice.html());
+        let $pPrice = parseFloat($prodprice.text());
         let $pQty = parseFloat($prodqty);
         totalPrice += $pPrice * $pQty;
       });
       //lägger till den nya totalen på sidan
       document.getElementById("total").innerHTML =
-        "<strong>SUMMA:</strong>" + totalPrice + "<br>";
+        "<strong>SUMMA: </strong>" + totalPrice + "kr" + "<br>";
     }
 
     $("#order").click(function() {
-      $("li").remove();
-      $("#total").html("<strong>SUMMA: </strong>");
-      alert("Tack för din beställning!");
+      let $cartRow = $(".cart-row");
+      if ($cartRow.length === 0) {
+        alert("Din varukorg är tom!");
+        return false;
+      } else {
+        storeToLocalStorage();
+        $("li").remove();
+        $("#total").html("<strong>SUMMA: </strong>");
+        alert("Tack för din beställning!");
+      }
     });
+
+    function storeToLocalStorage() {
+      let arrayStorage = [];
+      let $totalCost = $("#total").text();
+      let $cartRow = $(".cart-row");
+
+      $($cartRow).each(function() {
+        let $prodName = $(this)
+          .find(".product-name")
+          .text();
+        let $prodPrice = $(this)
+          .find(".product-price")
+          .text();
+        let $prodQty = $(this)
+          .find("input")
+          .val();
+        let $img = $(this)
+          .find(".img-container")
+          .text();
+
+        let $prodInfo = {
+          name: $prodName,
+          price: $prodPrice,
+          qty: $prodQty,
+          img: $img
+        };
+
+        arrayStorage.push($prodInfo);
+      });
+
+      console.log($totalCost);
+
+      localStorage.setItem("arrayStorage", JSON.stringify(arrayStorage));
+      localStorage.setItem("total", JSON.stringify($totalCost));
+    }
 
     function removeCartItem(event) {
       let buttonClicked = event.target;

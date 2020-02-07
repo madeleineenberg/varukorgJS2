@@ -68,3 +68,8 @@ li {
   list-style: none;
   padding: 5%;
 }
+
+.item-img {
+  max-width: 80px;
+  max-height: 80px;
+}
