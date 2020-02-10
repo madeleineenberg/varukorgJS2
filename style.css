@@ -73,3 +73,7 @@ li {
   max-width: 80px;
   max-height: 80px;
 }
+
+.img-container {
+  display: none;
+}

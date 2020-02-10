@@ -1,10 +1,9 @@
 $(document).ready(function() {
-  $.getJSON("products.json", function(user) {
-    let data = user.products;
-    $.each(data, function(i, name) {
+  $.getJSON("products.json", function(item) {
+    let data = item.products;
+    $.each(data, function(i) {
       $("#product-container").append(
         "<div class='product-card'>" +
-          "<div>" +
           "<img class='card-img-top'src=" +
           data[i].img +
           ">" +
@@ -21,7 +20,6 @@ $(document).ready(function() {
           "<br>" +
           "<br>" +
           '<button class="btn btn-warning">Köp</button>' +
-          "</div>" +
           "</div>"
       );
     });
@@ -30,28 +28,28 @@ $(document).ready(function() {
 
     function addToCart(event) {
       event.preventDefault();
-      let prod = $(this).parent();
-      let litext = prod.find(".product");
-      let listPrice = prod.find(".price");
-      let productQty = prod.find("input").val();
-      let $img = prod.find(".card-img-top").attr("src");
+      let $productParent = $(this).parent();
+      let $itemName = $productParent.find(".product");
+      let $itemPrice = $productParent.find(".price");
+      let $itemQty = $productParent.find("input").val();
+      let $itemImg = $productParent.find(".card-img-top").attr("src");
 
       $("#cart-list").append(
         "<li class='cart-row'>" +
-          "<div class='img-container' style='display: none;'>" +
-          $img +
+          "<div class='img-container'>" +
+          $itemImg +
           "</div>" +
           "<span class='product-name'>" +
-          litext.text() +
+          $itemName.text() +
           "</span>" +
           " " +
           "<span class='product-price'>" +
-          listPrice.text() +
+          $itemPrice.text() +
           "</span>" +
           "<span>kr</span>" +
           " " +
           '<input type="number" max="10" min="1" value="' +
-          productQty +
+          $itemQty +
           '" class="input-qty" />' +
           "<button class='remove-btn'>Ta bort</button>" +
           "</li>"
@@ -64,23 +62,19 @@ $(document).ready(function() {
     }
 
     function getTotalCost() {
-      let totalPrice = 0;
+      let $totalPrice = 0;
       let $cartRow = $(".cart-row");
-      //loopar över varje rad i varukorgen
       $($cartRow).each(function() {
-        //hittar priset och antalet på this.cartrow för varje loop
-        let $prodprice = $(this).find(".product-price");
-        let $prodqty = $(this)
+        let $prodPrice = $(this).find(".product-price");
+        let $prodQty = $(this)
           .find("input")
           .val();
-        // gör om från strängar till floats med parseFloat
-        let $pPrice = parseFloat($prodprice.text());
-        let $pQty = parseFloat($prodqty);
-        totalPrice += $pPrice * $pQty;
+        let $pPrice = parseFloat($prodPrice.text());
+        let $pQty = parseFloat($prodQty);
+        $totalPrice += $pPrice * $pQty;
       });
-      //lägger till den nya totalen på sidan
       document.getElementById("total").innerHTML =
-        "<strong>SUMMA: </strong>" + totalPrice + "kr" + "<br>";
+        "<strong>SUMMA: </strong>" + $totalPrice + "kr" + "<br>";
     }
 
     $("#order").click(function() {
@@ -94,6 +88,17 @@ $(document).ready(function() {
         $("#total").html("<strong>SUMMA: </strong>");
         alert("Tack för din beställning!");
       }
+    });
+
+    function removeCartItem(event) {
+      let buttonClicked = event.target;
+      buttonClicked.parentElement.remove();
+      getTotalCost();
+    }
+
+    $("#remove-all").click(function() {
+      $("ul").empty();
+      getTotalCost();
     });
 
     function storeToLocalStorage() {
@@ -125,21 +130,8 @@ $(document).ready(function() {
         arrayStorage.push($prodInfo);
       });
 
-      console.log($totalCost);
-
       localStorage.setItem("arrayStorage", JSON.stringify(arrayStorage));
       localStorage.setItem("total", JSON.stringify($totalCost));
     }
-
-    function removeCartItem(event) {
-      let buttonClicked = event.target;
-      buttonClicked.parentElement.remove();
-      getTotalCost();
-    }
-
-    $("#remove-all").click(function() {
-      $("ul").empty();
-      getTotalCost();
-    });
   });
 });
