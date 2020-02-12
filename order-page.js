@@ -9,8 +9,8 @@ $(document).ready(function() {
 
     for (let i = 0; i < $order.length; i++) {
       let $prodName = $order[i].name;
-      let $prodPrice = parseFloat($order[i].price);
-      let $prodQty = parseFloat($order[i].qty);
+      let $prodPrice = $order[i].price;
+      let $prodQty = $order[i].qty;
       let $prodImg = $order[i].img;
 
       $($receipt).append(
@@ -20,6 +20,11 @@ $(document).ready(function() {
           $prodImg +
           ">" +
           "</div>" +
+          "<div class='order-text'>" +
+          "<span class='item-qty'>" +
+          $prodQty +
+          " st</span>" +
+          " " +
           "<span>" +
           $prodName +
           "</span>" +
@@ -28,17 +33,14 @@ $(document).ready(function() {
           $prodPrice +
           "kr" +
           "</span>" +
-          " " +
-          "<span class='item-qty'>" +
-          $prodQty +
-          "</span>" +
-          "st" +
+          "</div>" +
           "</li>"
       );
     }
 
-    document.getElementById("receipt-total").innerHTML = "<span>" + $totalCost;
-    +"kr" + "</span>";
+    document.getElementById("receipt-total").innerHTML =
+      "<span><h3>" + $totalCost;
+    +"kr" + "</h3></span>";
   }
 
   localStorage.clear();

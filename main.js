@@ -17,6 +17,7 @@ $(document).ready(function() {
           "<span>kr</span>" +
           "<br>" +
           '<input type="number" max="10" min="1" value="1" class="product-qty" />' +
+          " st" +
           "<br>" +
           "<br>" +
           '<button class="btn btn-warning">Köp</button>' +
@@ -42,7 +43,7 @@ $(document).ready(function() {
           "<span class='product-name'>" +
           $itemName.text() +
           "</span>" +
-          " " +
+          "<br> " +
           "<span class='product-price'>" +
           $itemPrice.text() +
           "</span>" +
@@ -51,7 +52,8 @@ $(document).ready(function() {
           '<input type="number" max="10" min="1" value="' +
           $itemQty +
           '" class="input-qty" />' +
-          "<button class='remove-btn'>Ta bort</button>" +
+          " st" +
+          "<button class='remove-btn'>❌</button>" +
           "</li>"
       );
 

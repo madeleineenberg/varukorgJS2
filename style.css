@@ -49,10 +49,15 @@ header {
 
 .btn {
   max-width: 70px;
+  border-radius: 10px;
+  color: white;
+  border: 1px solid rgb(220, 220, 220);
 }
 
 .remove-btn {
   margin-left: 20px;
+  border: none;
+  background: none;
 }
 
 .product-card {
@@ -64,9 +69,15 @@ header {
 }
 
 li {
-  border: 1px solid orange;
+  border: 1px solid rgb(220, 220, 220);
   list-style: none;
   padding: 5%;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+li:nth-child(odd) {
+  background: rgb(237, 236, 236);
 }
 
 .item-img {
@@ -76,4 +87,127 @@ li {
 
 .img-container {
   display: none;
+}
+
+.btn-order {
+  background: rgb(242, 178, 58);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.btn-order:hover {
+  background: rgb(93, 233, 93);
+  transition: linear 300ms;
+}
+
+.order-link {
+  text-decoration: none;
+  color: white;
+}
+
+.order-link:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.remove-all {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.remove-all:hover {
+  background-color: red;
+  transition: linear 300ms;
+}
+
+input {
+  border-radius: 5px;
+  border: 1px solid rgb(220, 220, 220);
+  width: 35px;
+}
+
+.footer {
+  background: black;
+  color: white;
+  height: 150px;
+  margin-top: 30px;
+  text-align: center;
+  padding-top: 30px;
+  font-size: 14px;
+}
+
+.footer-text {
+  margin: 0;
+}
+
+.json-link {
+  font-size: 18px;
+  color: rgb(242, 178, 58);
+}
+.json-link:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.order-text {
+  font-size: 24px;
+  align-self: center;
+  margin-left: 20px;
+}
+
+.item-name {
+  display: flex;
+  padding: 20px;
+}
+
+.order-img {
+  border: 1px solid rgb(220, 220, 220);
+}
+
+.item-price {
+  margin-left: 40px;
+}
+
+.item-qty {
+  margin-right: 40px;
+}
+
+.back {
+  background: rgb(242, 178, 58);
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+}
+
+.back:hover {
+  color: white;
+  text-decoration: none;
+  background: rgb(93, 233, 93);
+  transition: linear 300ms;
+}
+
+.thank-u {
+  margin-top: 30px;
+}
+
+.receipt-total {
+  display: inline-block;
+  border-bottom: 2px solid rgb(242, 178, 58);
+}
+
+@media (max-width: 700px) {
+  #product-container {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  #cart-container {
+    margin-top: 40px;
+  }
+
+  .product-card {
+    min-width: 200px;
+  }
 }
