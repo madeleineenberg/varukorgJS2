@@ -11,11 +11,13 @@ Ni får använda jQuery Core men inte jQuery Plugins.
 4. Skapa en varukorg.
 
 För G-nivå skall man kunna lägga till en styck av varje produkt i varukorgen.
+
 5. Visa produktnamn och pris i varukorgen. Visa totalsumma i varukorgen.
 6. Lägg till en beställningsknapp i varukorgen.
 Vid beställning (när kunden klickar på beställningsknappen), visa en bekräftelse på skärmen och töm varukorgen.
 
 För VG-nivå skall ni dessutom arbeta med följande
+
 7. En kund skall kunna välja flera stycken produkter av samma sort, från en dropdown-lista eller ett input-fält.
 Man skall även kunna ändra antal i varukorgen.
 8. Man skall kunna ta bort enstaka produkter från varukorgen.
